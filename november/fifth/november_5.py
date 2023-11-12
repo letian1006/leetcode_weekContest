@@ -54,6 +54,7 @@ class Solution:
         # 正难则反的树形dp问题
         n = len(values)
         g = [[] for _ in range(n)]
+        # 为了防止将根作为叶子节点
         g[0].append(-1)
 
         for a, b in edges:
