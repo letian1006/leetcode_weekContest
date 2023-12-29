@@ -1,10 +1,13 @@
 from itertools import accumulate
 
 from typing import List
+
 """
 12-17日的周赛
 链接:https://leetcode.cn/contest/weekly-contest-376/
 """
+
+
 class Solution:
     # 链接:https://leetcode.cn/problems/apply-operations-to-maximize-frequency-score/description/
     def maxFrequencyScore(self, nums: List[int], k: int) -> int:
@@ -21,14 +24,16 @@ class Solution:
         s = list(accumulate(nums, initial=0))
         n = len(nums)
         l = ans = 0
-        def get_dis(left: int ,right: int) -> int:
+
+        def get_dis(left: int, right: int) -> int:
             # 将这个区间全部变成一样的数字需要的最少操作次数
             # 思想就是中位数贪心
             # 前缀和求差得到操作次数
             mid = (left + right) // 2
             left_sum = (mid - left) * nums[mid] - (s[mid] - s[left])
-            right_sum = s[right+1] - s[mid + 1] - (right - mid) * nums[mid]
+            right_sum = s[right + 1] - s[mid + 1] - (right - mid) * nums[mid]
             return left_sum + right_sum
+
         for r in range(n):
             if get_dis(l, r) > k:
                 l += 1
