@@ -66,7 +66,7 @@ class Solution:
         f[0][0] = True
         suf = [None] * n # 这个数组是存储选取k个数字的条件下能不能弄出某些数字的异或值
         for i in range(n - 1, k - 1, -1): # 后缀的左端点
-            for j in range(min(k - 1, n - 1 - i), -1, -1):
+            for j in range(min(k - 1, n - 1 - i), -1, -1):  # 倒着枚举 进行刷表 防止覆盖没有计算的状态
                 for x, has_x in enumerate(f[j]):
                     if has_x:
                         f[j+1][x | nums[i]] = True  # 刷表法 之前选j个数能够得到has_x 那么此时选择nums[i]得到 x or nums[i]
